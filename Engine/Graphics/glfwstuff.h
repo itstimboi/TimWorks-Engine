@@ -1,10 +1,7 @@
 #pragma once
 
-#include "windowsversion.h"
-
 namespace TE
 {
-
     enum class GLFWBackend
     {
         None,
@@ -36,11 +33,7 @@ namespace TE
 
     void PollGLFWEvents();
 
-    bool SetGLFWOpenGLVersion(
-        int major,
-        int minor
-    );
+    bool SetGLFWOpenGLVersion(int major, int minor);
 
     const char* GetGLVersionString();
-
 }

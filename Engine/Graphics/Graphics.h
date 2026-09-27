@@ -9,6 +9,11 @@ namespace TE
 
     struct GraphicsWindow;
 
+
+    // ============================================================
+    // Renderer Types
+    // ============================================================
+
     enum class Renderer
     {
         GL,
@@ -17,6 +22,7 @@ namespace TE
         Software,
         None
     };
+
 
     enum class GLRenderer
     {
@@ -46,12 +52,12 @@ namespace TE
         None
     };
 
+
     enum class DXRenderer
     {
         dx120,
 
         dx110,
-
         dx100,
 
         dx90c,
@@ -84,6 +90,7 @@ namespace TE
         None
     };
 
+
     enum class VKRenderer
     {
         vk14,
@@ -104,21 +111,6 @@ namespace TE
 
 
     // ============================================================
-    // Graphics Window
-    // ============================================================
-
-    // The actual contents are private to Graphics.cpp.
-    struct GraphicsWindow;
-
-
-    // ============================================================
-    // Legacy OpenGL
-    // ============================================================
-
-    bool IsUsingLegacyOpenGL();
-
-
-    // ============================================================
     // Detection
     // ============================================================
 
@@ -126,9 +118,8 @@ namespace TE
 
     GraphicsRenderer DetectBestRenderer();
 
-
     // ============================================================
-    // Window creation
+    // Window Creation
     // ============================================================
 
     GraphicsWindow* CreateGraphicsWindow(
@@ -146,7 +137,7 @@ namespace TE
 
 
     // ============================================================
-    // Window destruction
+    // Window Destruction
     // ============================================================
 
     void DestroyGraphicsWindow(
@@ -155,7 +146,7 @@ namespace TE
 
 
     // ============================================================
-    // Renderer switching
+    // Renderer Switching
     // ============================================================
 
     bool SwitchRenderer(
@@ -165,7 +156,7 @@ namespace TE
 
 
     // ============================================================
-    // Current window/context
+    // Current Window
     // ============================================================
 
     void GraphicsMakeCurrent(
@@ -174,7 +165,7 @@ namespace TE
 
 
     // ============================================================
-    // Window information
+    // Window Information
     // ============================================================
 
     int GraphicsGetWidth(
@@ -187,7 +178,7 @@ namespace TE
 
 
     // ============================================================
-    // Renderer information
+    // Renderer Information
     // ============================================================
 
     GraphicsRenderer GetGraphicsRenderer(
@@ -198,9 +189,7 @@ namespace TE
         GraphicsWindow* window
     );
 
-    GLRenderer GetGLRenderer(
-        GraphicsWindow* window
-    );
+    GLRenderer GetGLRenderer();
 
     DXRenderer GetDXRenderer(
         GraphicsWindow* window
@@ -212,7 +201,7 @@ namespace TE
 
 
     // ============================================================
-    // Renderer names
+    // Renderer Names
     // ============================================================
 
     const char* RendererName(
@@ -233,7 +222,7 @@ namespace TE
 
 
     // ============================================================
-    // Window operations
+    // Window Operations
     // ============================================================
 
     void GraphicsSwapBuffers(
@@ -248,9 +237,18 @@ namespace TE
 
 
     // ============================================================
-    // Global graphics shutdown
+    // Legacy OpenGL
+    // ============================================================
+
+    bool IsUsingLegacyOpenGL(
+        GraphicsWindow* window
+    );
+
+
+    // ============================================================
+    // Shutdown
     // ============================================================
 
     void DeInitGraphics();
 
-};
+}

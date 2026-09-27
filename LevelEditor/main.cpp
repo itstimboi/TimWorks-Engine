@@ -475,8 +475,8 @@ int main(
     );
 
     InitWindow(
-        1280,
-        720,
+        800,
+        600,
         "Level Editor"
     );
 
@@ -487,8 +487,8 @@ int main(
 
     RenderTexture2D viewportTexture =
         LoadRenderTexture(
-            1280,
-            720
+            800,
+            600
         );
 
 

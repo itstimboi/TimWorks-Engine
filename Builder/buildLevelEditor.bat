@@ -13,8 +13,9 @@ g++ -I"../include/" -L"../lib/" ^
 -lopengl32 ^
 -luser32 ^
 -lkernel32 ^
--lLevelEditor ^
 -mwindows ^
--o ../Build/LevelEditor.exe
+-o ../Build/LevelEditor.exe -ld3dcompiler -ldxgi -ld3d11 -ld3d12 -static-libgcc -static-libstdc++ -static
+
+@REM -static-libwinpthread-1
 
 echo All Done

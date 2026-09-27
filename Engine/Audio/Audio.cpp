@@ -48,7 +48,7 @@ namespace TE
 		// Init
 		// =========================================================
 
-		bool Audio::Init()
+		bool Init()
 		{
 			if (g_Initialized)
 				return true;
@@ -86,7 +86,7 @@ namespace TE
 		// Shutdown
 		// =========================================================
 
-		void Audio::Shutdown()
+		void Shutdown()
 		{
 			std::lock_guard<std::mutex> lock(g_AudioMutex);
 
@@ -122,7 +122,7 @@ namespace TE
 				<< "Audio shut down.\n";
 		}
 		
-		SoundHandle Audio::Pre_CacheSound(const std::string& path)
+		SoundHandle Pre_CacheSound(const std::string& path)
 		{
 			if (!g_Initialized)
 			{
@@ -222,7 +222,7 @@ namespace TE
 		// PlaySound
 		// =========================================================
 
-		void Audio::PlaySound(
+		void PlaySound(
 			SoundHandle sound,
 			bool loop
 		)
@@ -305,7 +305,7 @@ namespace TE
 		// StopSound
 		// =========================================================
 
-		void Audio::StopSound(
+		void StopSound(
 			SoundHandle sound
 		)
 		{
@@ -345,7 +345,7 @@ namespace TE
 		// SetVolume
 		// =========================================================
 
-		void Audio::SetVolume(
+		void SetVolume(
 			SoundHandle sound,
 			float volume
 		)
@@ -385,7 +385,7 @@ namespace TE
 			);
 		}
 		
-		void Audio::SetPanning(SoundHandle sound, float panning)
+		void SetPanning(SoundHandle sound, float panning)
 		{
 			if (!g_Initialized)
 				return;

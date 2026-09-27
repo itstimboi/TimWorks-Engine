@@ -19,7 +19,7 @@
 
 
 // ================================================================
-// Application
+// Application                                                                                                 
 // ================================================================
 
 std::string currentVersion = "App version: 0.0.6";
@@ -164,9 +164,29 @@ void RunCommand(const std::string& command)
     si.hStdError = hWrite;
 
 
-    std::string cmdLine =
-        "cmd.exe /C " + command;
+    // std::string cmdLine =
+    //     "cmd.exe /C " + command;
 
+    const std::string MSYS2_BASH =
+        R"(E:\msys64\usr\bin\bash.exe)";
+
+    std::string cmdLine;
+
+    if (command.rfind("UCRT64:", 0) == 0)
+    {
+        std::string bashCommand =
+            command.substr(7);
+
+        cmdLine =
+            "\"" + MSYS2_BASH + "\" -lc \"" +
+            bashCommand +
+            "\"";
+    }
+    else
+    {
+        cmdLine =
+            "cmd.exe /C " + command;
+    }
 
     BOOL processCreated = CreateProcessA(
         nullptr,

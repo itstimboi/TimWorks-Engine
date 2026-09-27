@@ -33,10 +33,8 @@
 
 namespace TE
 {
-
 	namespace Audio
 	{
-		
 		using SoundHandle = uint32_t;
 		
 		bool Init();

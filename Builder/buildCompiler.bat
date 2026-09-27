@@ -15,6 +15,6 @@
 @REM  -mwindows ^
 @REM  -o build.exe
 
-g++ -I"../include/" -L"../lib/" build.cpp ../include/ImGUI/*.cpp ../include/rlImGUI/*.cpp -lraylib -lwinmm -lgdi32 -lopengl32 -luser32 -lkernel32 -ld3dcompiler -ldxgi -ld3d11 -ld3d12 -mwindows -o build.exe
+g++ -I"../include/" -L"../lib/" build.cpp ../include/ImGUI/*.cpp ../include/rlImGUI/*.cpp -lraylib -lwinmm -lgdi32 -lopengl32 -luser32 -lkernel32 -ld3dcompiler -ldxgi -ld3d11 -ld3d12 -static -static-libstdc++ -static-libgcc -mwindows -o build.exe
 
 echo All Done
