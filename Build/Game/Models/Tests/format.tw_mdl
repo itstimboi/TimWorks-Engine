@@ -1,0 +1,49 @@
+{
+    "version": [0.1],
+
+    "materials": [
+        {
+            "name": "playerSkin",
+            "texture": "texture path" // base64
+        },
+        {
+            "name": "weapon1",
+            "texture": "texture path" // base64
+        }]
+
+    "idle_frame": [
+        {
+            // vertex data (with pos, normal, color, bones, and weights)
+        },
+        {
+            // indice data
+        },
+        {
+            // bone data
+        },
+        {
+            // surface data (material, flat or smooth shading)
+        }
+    ],
+
+    "collision_data": [
+        {
+            // vertex data
+        },
+        {
+            // indice data
+        },
+        {
+            // surface data
+        }
+    ],
+
+    "frames": [21], // get the meme/reference? 
+
+    "frame1": [...],
+    "frame...": [...] // frames can have different/more vertexes, indices, surfaces, bones, etc. than the idle frame
+
+            // frame number, pause between frame/lerping vertexes time
+    "anim1": [{frame1, 0.5f},
+        {frame6, 1.0f}]
+}

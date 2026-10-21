@@ -1,8 +1,9 @@
 #pragma once
 
-#include <glad/glad.h>
-
 #include "VBO.h"
+
+namespace TWE
+{
 
 class VAO
 {
@@ -24,8 +25,8 @@ public:
         VBO& vbo,
         unsigned int layout,
         unsigned int numComponents,
-        GLenum type,
-        GLsizeiptr stride,
+        unsigned int type,
+        signed long long int stride,
         void* offset
     );
 
@@ -33,4 +34,6 @@ public:
     void Unbind();
 
     void Delete();
+};
+
 };

@@ -2,7 +2,12 @@
 
 #include <cstddef>
 
-VBO::VBO(std::vector<TE::Vertex>& vertices)
+#include <glad/glad46.h>
+
+namespace TWE
+{
+
+VBO::VBO(std::vector<Vertex>& vertices)
 {
     glGenBuffers(1, &ID);
 
@@ -11,7 +16,7 @@ VBO::VBO(std::vector<TE::Vertex>& vertices)
     glBufferData(
         GL_ARRAY_BUFFER,
         static_cast<GLsizeiptr>(
-            vertices.size() * sizeof(TE::Vertex)
+            vertices.size() * sizeof(Vertex)
         ),
         vertices.data(),
         GL_STATIC_DRAW
@@ -60,4 +65,6 @@ void VBO::Delete()
         glDeleteBuffers(1, &ID);
         ID = 0;
     }
+}
+
 }

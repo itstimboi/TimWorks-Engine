@@ -2,8 +2,6 @@
 
 #define GLM_ENABLE_EXPERIMENTAL
 
-#include "glad/glad.h"
-#include "GLFW/glfw3.h"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
@@ -12,7 +10,7 @@
 
 #include "Rendering/shaderClass.h"
 
-namespace TE
+namespace TWE
 {
 
     class Camera
@@ -35,8 +33,8 @@ namespace TE
             Camera(int width, int height, glm::vec3 position);
 
             void updateMatrix(float FOVdeg, float nearPlane, float farPlane);
-            void Matrix(TE::Shader& shader, const char* uniform);
-            void Inputs(GLFWwindow* window);
+            void Matrix(Shader& shader, const char* uniform);
+            // void Inputs(GLFWwindow* window);
     };
 
 };

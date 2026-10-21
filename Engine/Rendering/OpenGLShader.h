@@ -2,8 +2,6 @@
 
 #include <string>
 
-#include <glad/glad.h>
-
 #include <glm/glm.hpp>
 
 std::string ReadShaderFile(const char* filename);
@@ -64,7 +62,7 @@ private:
         const char* type
     );
 
-    GLint GetUniformLocation(
+    int GetUniformLocation(
         const std::string& name
     ) const;
 };

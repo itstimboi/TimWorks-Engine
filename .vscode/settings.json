@@ -1,3 +1,7 @@
 {
+    "python.analysis.extraPaths": [
+        "A:/Blender 5.2/5.0/python/lib"
+    ],
+    "python-envs.defaultEnvManager": "ms-python.python:system",
     "cmake.sourceDirectory": "E:/MY3DENGINE/3dEngine/include/glm"
 }

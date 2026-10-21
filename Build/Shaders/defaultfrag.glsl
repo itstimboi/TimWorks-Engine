@@ -1,95 +1,99 @@
-#version 460 core
+#version 110
 
-// Outputs colors in RGBA
-out vec4 FragColor;
 
-// Imports the current position from the Vertex Shader
-in vec3 crntPos;
-// Imports the normal from the Vertex Shader
-in vec3 Normal;
-// Imports the color from the Vertex Shader
-in vec3 color;
-// Imports the texture coordinates from the Vertex Shader
-in vec2 texCoord;
+// Current position from Vertex Shader
+varying vec3 crntPos;
 
-// Gets the Texture Unit from the main function
+// Normal from Vertex Shader
+varying vec3 Normal;
+
+// Color from Vertex Shader
+varying vec3 color;
+
+// Texture coordinates from Vertex Shader
+varying vec2 texCoord;
+
+
+// Diffuse texture
 uniform sampler2D diffuse0;
-// Gets the color of the light from the main function
+
+// Color of the light
 uniform vec4 lightColor;
-// Gets the position of the light from the main function
-uniform vec3 lightPos;
-// Gets the position of the camera from the main function
+
+// Camera position
 uniform vec3 camPos;
 
+// Whether lighting is enabled
 uniform bool usingLights;
 
-struct PointLight {
+
+// ============================================================
+// Point Light
+// ============================================================
+
+struct PointLight
+{
     vec3 position;
+
     float constant;
     float linear;
     float quadratic;
+
     vec3 ambient;
     vec3 diffuse;
+
     float specular;
 };
 
+
 #define NR_POINT_LIGHTS 16
+
 uniform PointLight pointLights[NR_POINT_LIGHTS];
 
-// vec4 pointLight()
-// {
-// 	// used in two variables so I calculate it here to not have to do it twice
-// 	vec3 lightVec = position - crntPos;
 
-// 	// intensity of light with respect to distance
-// 	float dist = length(lightVec);
-// 	float a = 3.0;
-// 	float b = 0.7;
-// 	float inten = 1.0f / (a * dist * dist + b * dist + 1.0f);
-
-// 	// ambient lighting
-// 	ambient = 0.20f;
-
-// 	// diffuse lighting
-// 	vec3 normal = normalize(Normal);
-// 	vec3 lightDirection = normalize(lightPos - crntPos);
-// 	float diffuse = max(dot(normal, lightDirection), 0.0f);
-
-// 	// // specular lighting
-// 	// float specularLight = 0.50f;
-// 	// vec3 viewDirection = normalize(camPos - crntPos);
-// 	// vec3 reflectionDirection = reflect(-lightDirection, normal);
-// 	// float specAmount = pow(max(dot(viewDirection, reflectionDirection), 0.0f), 8);
-// 	// specular = specAmount * specularLight;
-
-// 	return (texture(diffuse0, texCoord) * (diffuse * inten + ambient)) * lightColor;
-// }
+// ============================================================
+// Point Light Function
+// ============================================================
 
 vec4 pointLight(PointLight light)
 {
-    vec3 lightVec = light.position - crntPos;
+    vec3 lightVec =
+        light.position - crntPos;
 
-    float dist = length(lightVec);
+    float dist =
+        length(lightVec);
 
-    float inten = 1.0f /
-        (light.constant +
-         light.linear * dist +
-         light.quadratic * dist * dist);
+    float inten =
+        1.0 /
+        (
+            light.constant +
+            light.linear * dist +
+            light.quadratic * dist * dist
+        );
 
-    vec3 normal = normalize(Normal);
+    vec3 normal =
+        normalize(Normal);
 
     vec3 lightDirection =
         normalize(light.position - crntPos);
 
     float diffuse =
-        max(dot(normal, lightDirection), 0.0f);
+        max(
+            dot(normal, lightDirection),
+            0.0
+        );
 
     vec4 texColor =
-        texture(diffuse0, texCoord);
+        texture2D(
+            diffuse0,
+            texCoord
+        );
 
     vec3 lighting =
         light.ambient +
-        light.diffuse * diffuse * inten;
+        light.diffuse *
+        diffuse *
+        inten;
 
     return vec4(
         texColor.rgb * lighting,
@@ -97,33 +101,82 @@ vec4 pointLight(PointLight light)
     );
 }
 
+
+// ============================================================
+// Directional Light
+// ============================================================
+
 vec4 direcLight()
 {
-	// ambient lighting
-	float ambient = 0.20f;
+    // Ambient lighting
+    float ambient = 0.20;
 
-	// diffuse lighting
-	vec3 normal = normalize(Normal);
-	vec3 lightDirection = normalize(vec3(1.0f, 1.0f, 0.0f));
-	float diffuse = max(dot(normal, lightDirection), 0.0f);
+    // Diffuse lighting
+    vec3 normal =
+        normalize(Normal);
 
-	// specular lighting
-	float specularLight = 0.50f;
-	vec3 viewDirection = normalize(camPos - crntPos);
-	vec3 reflectionDirection = reflect(-lightDirection, normal);
-	float specAmount = pow(max(dot(viewDirection, reflectionDirection), 0.0f), 16);
-	float specular = specAmount * specularLight;
+    vec3 lightDirection =
+        normalize(
+            vec3(
+                1.0,
+                1.0,
+                0.0
+            )
+        );
 
-	return (texture(diffuse0, texCoord) * (diffuse + ambient)) * lightColor;
+    float diffuse =
+        max(
+            dot(normal, lightDirection),
+            0.0
+        );
+
+    // Specular lighting
+    float specularLight = 0.50;
+
+    vec3 viewDirection =
+        normalize(
+            camPos - crntPos
+        );
+
+    vec3 reflectionDirection =
+        reflect(
+            -lightDirection,
+            normal
+        );
+
+    float specAmount =
+        pow(
+            max(
+                dot(
+                    viewDirection,
+                    reflectionDirection
+                ),
+                0.0
+            ),
+            16.0
+        );
+
+    float specular =
+        specAmount *
+        specularLight;
+
+    return
+        (
+            texture2D(
+                diffuse0,
+                texCoord
+            )
+            *
+            (diffuse + ambient)
+        )
+        *
+        lightColor;
 }
 
-uniform vec3 flashLightPos;
-uniform vec3 flashLightDirection;
 
-uniform float flashLightInnerCone;
-uniform float flashLightOuterCone;
-
-uniform bool flashLightEnabled;
+// ============================================================
+// Spotlight
+// ============================================================
 
 struct SpotLight
 {
@@ -141,34 +194,49 @@ struct SpotLight
     float outerCone;
 };
 
+
 #define NR_SPOT_LIGHTS 16
 
 uniform SpotLight spotLights[NR_SPOT_LIGHTS];
 
+
+// ============================================================
+// Spotlight Function
+// ============================================================
+
 vec4 spotLight(SpotLight light)
 {
-    vec3 lightVec = light.position - crntPos;
+    vec3 lightVec =
+        light.position - crntPos;
 
-    float dist = length(lightVec);
+    float dist =
+        length(lightVec);
 
     float inten =
-        1.0f /
+        1.0 /
         (
             light.constant +
             light.linear * dist +
             light.quadratic * dist * dist
         );
 
-    vec3 normal = normalize(Normal);
+    vec3 normal =
+        normalize(Normal);
 
     vec3 lightDirection =
-        normalize(light.position - crntPos);
+        normalize(
+            light.position - crntPos
+        );
 
     float diffuse =
         max(
-            dot(normal, lightDirection),
-            0.0f
+            dot(
+                normal,
+                lightDirection
+            ),
+            0.0
         );
+
 
     // --------------------------------------------------------
     // Spotlight cone
@@ -182,18 +250,30 @@ vec4 spotLight(SpotLight light)
 
     float coneIntensity =
         clamp(
-            (angle - light.outerCone) /
-            (light.innerCone - light.outerCone),
-            0.0f,
-            1.0f
+            (
+                angle -
+                light.outerCone
+            )
+            /
+            (
+                light.innerCone -
+                light.outerCone
+            ),
+            0.0,
+            1.0
         );
+
 
     // --------------------------------------------------------
     // Texture
     // --------------------------------------------------------
 
     vec4 texColor =
-        texture(diffuse0, texCoord);
+        texture2D(
+            diffuse0,
+            texCoord
+        );
+
 
     // --------------------------------------------------------
     // Lighting
@@ -205,68 +285,75 @@ vec4 spotLight(SpotLight light)
         inten *
         coneIntensity;
 
+
     return vec4(
         texColor.rgb * lighting,
         texColor.a
     );
 }
 
-// {
-// 	// controls how big the area that is lit up is
-// 	float outerCone = 0.90f;
-// 	float innerCone = 0.95f;
 
-// 	// ambient lighting
-// 	float ambient = 0.20f;
-
-// 	// diffuse lighting
-// 	vec3 normal = normalize(Normal);
-// 	vec3 lightDirection = normalize(lightPos - crntPos);
-// 	float diffuse = max(dot(normal, lightDirection), 0.0f);
-
-// 	// specular lighting
-// 	float specularLight = 0.50f;
-// 	vec3 viewDirection = normalize(camPos - crntPos);
-// 	vec3 reflectionDirection = reflect(-lightDirection, normal);
-// 	float specAmount = pow(max(dot(viewDirection, reflectionDirection), 0.0f), 16);
-// 	float specular = specAmount * specularLight;
-
-// 	// calculates the intensity of the crntPos based on its angle to the center of the light cone
-// 	float angle = dot(vec3(0.0f, -1.0f, 0.0f), -lightDirection);
-// 	float inten = clamp((angle - outerCone) / (innerCone - outerCone), 0.0f, 1.0f);
-
-// 	if (texture(diffuse0, texCoord).a < 0.1)
-// 		discard;
-
-// 	return (texture(diffuse0, texCoord) * (diffuse * inten + ambient)) * lightColor;
-// }
+// ============================================================
+// Main
+// ============================================================
 
 void main()
 {
-    vec4 texColor = texture(diffuse0, texCoord);
+    vec4 texColor =
+        texture2D(
+            diffuse0,
+            texCoord
+        );
 
+
+    // No lighting
     if (!usingLights)
     {
-        FragColor = texColor;
+        gl_FragColor =
+            texColor;
+
         return;
     }
 
-    vec3 result =
-        texColor.rgb * 0.20f;
 
+    // Base ambient lighting
+    vec3 result =
+        texColor.rgb *
+        0.20;
+
+
+    // --------------------------------------------------------
     // Point lights
+    // --------------------------------------------------------
+
     for (int i = 0; i < NR_POINT_LIGHTS; i++)
     {
-        result += pointLight(pointLights[i]).rgb;
+        result +=
+            pointLight(
+                pointLights[i]
+            ).rgb;
     }
 
+
+    // --------------------------------------------------------
     // Spot lights
+    // --------------------------------------------------------
+
     for (int i = 0; i < NR_SPOT_LIGHTS; i++)
     {
-        result += spotLight(spotLights[i]).rgb;
+        result +=
+            spotLight(
+                spotLights[i]
+            ).rgb;
     }
 
-    FragColor =
-        vec4(result, texColor.a) *
+
+    // Final color
+    gl_FragColor =
+        vec4(
+            result,
+            texColor.a
+        )
+        *
         lightColor;
 }

@@ -3,6 +3,3 @@
 *.exe
 
 *.txt
-
-lib/
-include/

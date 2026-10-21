@@ -2,7 +2,8 @@
 
 #include <vector>
 
-#include <glad/glad.h>
+namespace TWE
+{
 
 class EBO
 {
@@ -21,4 +22,6 @@ public:
     void Unbind();
 
     void Delete();
+};
+
 };

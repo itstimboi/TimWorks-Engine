@@ -9,13 +9,14 @@ g++ -I"../include/" -I"../Engine/" -L"../lib/" ^
 ../Engine/Textures/*.cpp ^
 ../Engine/Light/*.cpp ^
 ../Engine/Mesh/*.cpp ^
+../Engine/Input/*.cpp ^
 ../Engine/Map/*.cpp ^
 ../Engine/Graphics/*.cpp ^
 ../Engine/Windows/*.cpp ^
 ../Engine/Sprites/*.cpp ^
 ../Engine/Audio/*.cpp ^
 ../include/ImGUI/*.cpp ^
--lglfw2 -lgdi32 -ld3dcompiler -ldxgi -ld3d11 -ld3d12 -lopengl32 -luser32 -lkernel32 ^
+-lglfw2 -lgdi32 -ld3dcompiler -ldxgi -ld3d11 -ld3d12 -lopengl32 -luser32 -lkernel32 -lversion ^
 -static -static-libstdc++ -static-libgcc ^
 -o ../Build/Engine.exe
 

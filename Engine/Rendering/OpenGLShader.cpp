@@ -7,6 +7,8 @@
 #include <cerrno>
 #include <cstring>
 
+#include <glad/glad46.h>
+
 #include <glm/gtc/type_ptr.hpp>
 
 
@@ -229,7 +231,7 @@ void OpenGLShader::CompileErrors(
 }
 
 
-GLint OpenGLShader::GetUniformLocation(
+int OpenGLShader::GetUniformLocation(
     const std::string& name
 ) const
 {

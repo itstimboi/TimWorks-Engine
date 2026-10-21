@@ -31,14 +31,14 @@ namespace
 
     bool g_Initialized = false;
 
-    TE::Audio::SoundHandle g_NextSoundHandle = 1;
+    TWE::Audio::SoundHandle g_NextSoundHandle = 1;
 
-    std::unordered_map<TE::Audio::SoundHandle, CachedSound> g_Sounds;
+    std::unordered_map<TWE::Audio::SoundHandle, CachedSound> g_Sounds;
 
     std::mutex g_AudioMutex;
 }
 
-namespace TE
+namespace TWE
 {
 
 	namespace Audio
@@ -283,6 +283,15 @@ namespace TE
 				cachedSound.volume
 			);
 
+			// -----------------------------------------------------
+			// Apply panning
+			// -----------------------------------------------------
+
+			ma_sound_set_pan(
+                audio,
+                cachedSound.panning
+            );
+
 
 			// -----------------------------------------------------
 			// Play
@@ -420,6 +429,160 @@ namespace TE
 				panning
 			);
 		}
+
+		// =========================================================
+        // PlaySound3D
+        // =========================================================
+
+        void PlaySound3D(
+            SoundHandle sound, 
+			glm::vec3 position,
+            bool loop
+        )
+        {
+            if (!g_Initialized)
+                return;
+
+
+            std::lock_guard<std::mutex> lock(g_AudioMutex);
+
+
+            auto it = g_Sounds.find(sound);
+
+
+            if (it == g_Sounds.end())
+            {
+                std::cerr
+                    << "Audio: Invalid sound handle: "
+                    << sound
+                    << "\n";
+
+                return;
+            }
+
+
+            CachedSound& cachedSound =
+                it->second;
+
+
+            ma_sound* audio =
+                cachedSound.sound.get();
+
+
+            // Enable 3D spatialization.
+
+            ma_sound_set_spatialization_enabled(
+                audio,
+                MA_TRUE
+            );
+
+			ma_sound_set_position(
+				audio,
+				position.x,
+				position.y,
+				position.z
+			);
+
+
+            ma_sound_set_looping(
+                audio,
+                loop
+            );
+
+
+            ma_sound_seek_to_pcm_frame(
+                audio,
+                0
+            );
+
+
+            ma_sound_set_volume(
+                audio,
+                cachedSound.volume
+            );
+
+
+            ma_result result =
+                ma_sound_start(audio);
+
+
+            if (result != MA_SUCCESS)
+            {
+                std::cerr
+                    << "Audio: Failed to play 3D sound "
+                    << sound
+                    << "\n";
+            }
+        }
+
+
+        // =========================================================
+        // StopSound3D
+        // =========================================================
+
+        void StopSound3D(
+            SoundHandle sound
+        )
+        {
+            if (!g_Initialized)
+                return;
+
+
+            std::lock_guard<std::mutex> lock(g_AudioMutex);
+
+
+            auto it = g_Sounds.find(sound);
+
+
+            if (it == g_Sounds.end())
+                return;
+
+
+            ma_sound* audio =
+                it->second.sound.get();
+
+
+            ma_sound_stop(audio);
+
+
+            ma_sound_seek_to_pcm_frame(
+                audio,
+                0
+            );
+        }
+
+
+        // =========================================================
+        // SetVolume3D
+        // =========================================================
+
+        void SetVolume3D(
+            SoundHandle sound,
+            float volume
+        )
+        {
+            SetVolume(
+                sound,
+                volume
+            );
+        }
+
+
+        // =========================================================
+        // SetPanning3D
+        // =========================================================
+
+        void SetPanning3D(
+            SoundHandle sound,
+            float panning
+        )
+        {
+            SetPanning(
+                sound,
+                panning
+            );
+        }
+
 
 	}
 }

@@ -23,7 +23,7 @@ std::string OpenMapDialog()
     dialog.nMaxFile = MAX_PATH;
 
     dialog.lpstrFilter =
-        "Tim Map (*.tmap)\0*.tmap\0"
+        "TimWorks Map (*.tw_map)\0*.tw_map\0"
         "All Files (*.*)\0*.*\0";
 
     dialog.nFilterIndex = 1;
@@ -58,7 +58,7 @@ std::string SaveMapDialog()
     dialog.nMaxFile = MAX_PATH;
 
     dialog.lpstrFilter =
-        "Tim Map (*.tmap)\0*.tmap\0"
+        "TimWorks Map (*.tw_map)\0*.tw_map\0"
         "All Files (*.*)\0*.*\0";
 
     dialog.nFilterIndex = 1;

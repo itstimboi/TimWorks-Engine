@@ -119,7 +119,7 @@ BOOL GetRealWindowsVersion(OSVERSIONINFOEXW* osVersionInfo)
     return TRUE;
 }
 
-namespace TE
+namespace TWE
 {
     WindowsVersion GetWindowsVersion()
     {

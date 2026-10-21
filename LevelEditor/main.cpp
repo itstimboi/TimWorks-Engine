@@ -431,7 +431,6 @@ Vector3 GetCameraForward(
     );
 }
 
-
 // ============================================================
 // Main
 // ============================================================
@@ -441,24 +440,49 @@ int main(
     char* argv[]
 )
 {
+
+    int windowWidth = 1280;
+    int windowHeight = 720;
+
     // ========================================================
     // Open map passed through command line
     // ========================================================
 
     if (argc > 1)
     {
-        std::string filename =
-            argv[1];
-
-        if (currentMap.Load(filename))
+        for (int i = 1; i < argc; i++)
         {
-            currentFilename =
-                filename;
+            std::string arg =
+                argv[i];
 
-            std::cout
-                << "Opened: "
-                << filename
-                << '\n';
+            if (arg == "-width" && i + 1 < argc)
+            {
+                windowWidth = std::stoi(argv[++i]);
+                continue;
+            }
+            if (arg == "-height" && i + 1 < argc)
+            {
+                windowHeight = std::stoi(argv[++i]);
+                continue;
+            }
+            
+            const std::string ext = ".tw_map";
+
+            if (arg.size() < ext.size() ||
+                arg.compare(arg.size() - ext.size(), ext.size(), ext) != 0) {
+                std::cerr << "Error: '" << arg << "' does not have a .tw_map extension." << std::endl;         
+            }
+
+            if (currentMap.Load(arg))
+            {
+                currentFilename =
+                    arg;
+
+                std::cout
+                    << "Opened: "
+                    << arg
+                    << '\n';
+            }
         }
     }
 
@@ -475,9 +499,9 @@ int main(
     );
 
     InitWindow(
-        800,
-        600,
-        "Level Editor"
+        windowWidth,
+        windowHeight,
+        "TimWorks Level Editor"
     );
 
 
@@ -487,8 +511,8 @@ int main(
 
     RenderTexture2D viewportTexture =
         LoadRenderTexture(
-            800,
-            600
+            windowWidth / 1.6f,
+            windowHeight / 1.2f
         );
 
 
@@ -961,11 +985,11 @@ int main(
                     Vector2 rayMouse =
                     {
                         viewportMouse.x *
-                            (1280.0f /
+                            (windowWidth /
                              viewportSize.x),
 
                         viewportMouse.y *
-                            (720.0f /
+                            (windowHeight /
                              viewportSize.y)
                     };
 

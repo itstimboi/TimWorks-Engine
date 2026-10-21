@@ -159,21 +159,462 @@
 
 #include "Mesh.h"
 
-namespace TE
+#include <glad/glad46.h>
+
+namespace TWE
 {
+    static const char* vsS = R"GLSL(
+        #version 110
+
+        // Positions / Coordinates
+        attribute vec3 aPos;
+
+        // Normals
+        attribute vec3 aNormal;
+
+        // Colors
+        attribute vec3 aColor;
+
+        // Texture Coordinates
+        attribute vec2 aTex;
+
+
+        // Outputs to the Fragment Shader
+        varying vec3 crntPos;
+        varying vec3 Normal;
+        varying vec3 color;
+        varying vec2 texCoord;
+
+
+        // Camera matrix
+        uniform mat4 camMatrix;
+
+        // Model matrix
+        uniform mat4 model;
+
+        uniform mat4 translation;
+        uniform mat4 rotation;
+        uniform mat4 scale;
+
+
+        void main()
+        {
+            // Calculate current position
+            crntPos =
+                vec3(
+                    model *
+                    translation *
+                    rotation *
+                    scale *
+                    vec4(aPos, 1.0)
+                );
+
+            // Normal
+            Normal = aNormal;
+
+            // Color
+            color = aColor;
+
+            // Texture coordinates
+            texCoord = vec2(
+                aTex.x,
+                1.0 - aTex.y
+            );
+
+            // Final vertex position
+            gl_Position =
+                camMatrix *
+                model *
+                vec4(aPos, 1.0);
+        }
+        )GLSL";
+
+    static const char* fsS = R"GLSL(
+        #version 110
+
+
+        // Current position from Vertex Shader
+        varying vec3 crntPos;
+
+        // Normal from Vertex Shader
+        varying vec3 Normal;
+
+        // Color from Vertex Shader
+        varying vec3 color;
+
+        // Texture coordinates from Vertex Shader
+        varying vec2 texCoord;
+
+
+        // Diffuse texture
+        uniform sampler2D diffuse0;
+
+        // Color of the light
+        uniform vec4 lightColor;
+
+        // Camera position
+        uniform vec3 camPos;
+
+        // Whether lighting is enabled
+        uniform bool usingLights;
+
+
+        // ============================================================
+        // Point Light
+        // ============================================================
+
+        struct PointLight
+        {
+            vec3 position;
+
+            float constant;
+            float linear;
+            float quadratic;
+
+            vec3 ambient;
+            vec3 diffuse;
+
+            float specular;
+        };
+
+
+        #define NR_POINT_LIGHTS 16
+
+        uniform PointLight pointLights[NR_POINT_LIGHTS];
+
+
+        // ============================================================
+        // Point Light Function
+        // ============================================================
+
+        vec4 pointLight(PointLight light)
+        {
+            vec3 lightVec =
+                light.position - crntPos;
+
+            float dist =
+                length(lightVec);
+
+            float inten =
+                1.0 /
+                (
+                    light.constant +
+                    light.linear * dist +
+                    light.quadratic * dist * dist
+                );
+
+            vec3 normal =
+                normalize(Normal);
+
+            vec3 lightDirection =
+                normalize(light.position - crntPos);
+
+            float diffuse =
+                max(
+                    dot(normal, lightDirection),
+                    0.0
+                );
+
+            vec4 texColor =
+                texture2D(
+                    diffuse0,
+                    texCoord
+                );
+
+            vec3 lighting =
+                light.ambient +
+                light.diffuse *
+                diffuse *
+                inten;
+
+            return vec4(
+                texColor.rgb * lighting,
+                texColor.a
+            );
+        }
+
+
+        // ============================================================
+        // Directional Light
+        // ============================================================
+
+        vec4 direcLight()
+        {
+            // Ambient lighting
+            float ambient = 0.20;
+
+            // Diffuse lighting
+            vec3 normal =
+                normalize(Normal);
+
+            vec3 lightDirection =
+                normalize(
+                    vec3(
+                        1.0,
+                        1.0,
+                        0.0
+                    )
+                );
+
+            float diffuse =
+                max(
+                    dot(normal, lightDirection),
+                    0.0
+                );
+
+            // Specular lighting
+            float specularLight = 0.50;
+
+            vec3 viewDirection =
+                normalize(
+                    camPos - crntPos
+                );
+
+            vec3 reflectionDirection =
+                reflect(
+                    -lightDirection,
+                    normal
+                );
+
+            float specAmount =
+                pow(
+                    max(
+                        dot(
+                            viewDirection,
+                            reflectionDirection
+                        ),
+                        0.0
+                    ),
+                    16.0
+                );
+
+            float specular =
+                specAmount *
+                specularLight;
+
+            return
+                (
+                    texture2D(
+                        diffuse0,
+                        texCoord
+                    )
+                    *
+                    (diffuse + ambient)
+                )
+                *
+                lightColor;
+        }
+
+
+        // ============================================================
+        // Spotlight
+        // ============================================================
+
+        struct SpotLight
+        {
+            vec3 position;
+            vec3 direction;
+
+            float constant;
+            float linear;
+            float quadratic;
+
+            vec3 ambient;
+            vec3 diffuse;
+
+            float innerCone;
+            float outerCone;
+        };
+
+
+        #define NR_SPOT_LIGHTS 16
+
+        uniform SpotLight spotLights[NR_SPOT_LIGHTS];
+
+
+        // ============================================================
+        // Spotlight Function
+        // ============================================================
+
+        vec4 spotLight(SpotLight light)
+        {
+            vec3 lightVec =
+                light.position - crntPos;
+
+            float dist =
+                length(lightVec);
+
+            float inten =
+                1.0 /
+                (
+                    light.constant +
+                    light.linear * dist +
+                    light.quadratic * dist * dist
+                );
+
+            vec3 normal =
+                normalize(Normal);
+
+            vec3 lightDirection =
+                normalize(
+                    light.position - crntPos
+                );
+
+            float diffuse =
+                max(
+                    dot(
+                        normal,
+                        lightDirection
+                    ),
+                    0.0
+                );
+
+
+            // --------------------------------------------------------
+            // Spotlight cone
+            // --------------------------------------------------------
+
+            float angle =
+                dot(
+                    normalize(-light.direction),
+                    normalize(-lightVec)
+                );
+
+            float coneIntensity =
+                clamp(
+                    (
+                        angle -
+                        light.outerCone
+                    )
+                    /
+                    (
+                        light.innerCone -
+                        light.outerCone
+                    ),
+                    0.0,
+                    1.0
+                );
+
+
+            // --------------------------------------------------------
+            // Texture
+            // --------------------------------------------------------
+
+            vec4 texColor =
+                texture2D(
+                    diffuse0,
+                    texCoord
+                );
+
+
+            // --------------------------------------------------------
+            // Lighting
+            // --------------------------------------------------------
+
+            vec3 lighting =
+                light.diffuse *
+                diffuse *
+                inten *
+                coneIntensity;
+
+
+            return vec4(
+                texColor.rgb * lighting,
+                texColor.a
+            );
+        }
+
+
+        // ============================================================
+        // Main
+        // ============================================================
+
+        void main()
+        {
+            vec4 texColor =
+                texture2D(
+                    diffuse0,
+                    texCoord
+                );
+
+
+            // No lighting
+            if (!usingLights)
+            {
+                gl_FragColor =
+                    texColor;
+
+                return;
+            }
+
+
+            // Base ambient lighting
+            vec3 result =
+                texColor.rgb *
+                0.20;
+
+
+            // --------------------------------------------------------
+            // Point lights
+            // --------------------------------------------------------
+
+            for (int i = 0; i < NR_POINT_LIGHTS; i++)
+            {
+                result +=
+                    pointLight(
+                        pointLights[i]
+                    ).rgb;
+            }
+
+
+            // --------------------------------------------------------
+            // Spot lights
+            // --------------------------------------------------------
+
+            for (int i = 0; i < NR_SPOT_LIGHTS; i++)
+            {
+                result +=
+                    spotLight(
+                        spotLights[i]
+                    ).rgb;
+            }
+
+
+            // Final color
+            gl_FragColor =
+                vec4(
+                    result,
+                    texColor.a
+                )
+                *
+                lightColor;
+        }
+        )GLSL";
+
+    static Shader meshShader(
+            (ShaderSource)
+            {
+                vsS,
+                fsS
+            }
+        );
 
     Mesh::Mesh(
-        std::vector<Vertex>& vertices,
-        std::vector<unsigned int>& indices,
-        std::vector<Texture>& textures,
+        std::vector<Vertex> vertices,
+        std::vector<unsigned int> indices,
+        std::vector<Material> materials,
         unsigned int instancing,
         std::vector<glm::mat4> instanceMatrix
     )
+        : vertices(std::move(vertices)),
+        indices(std::move(indices)),
+        materials(std::move(materials)),
+        instancing(instancing)
     {
-        Mesh::vertices = vertices;
-        Mesh::indices = indices;
-        Mesh::textures = textures;
-        Mesh::instancing = instancing;
+        // Mesh::vertices = vertices;
+        // Mesh::indices = indices;
+        // Mesh::materials = materials;
+        // Mesh::instancing = instancing;
 
         VAO.Bind();
 
@@ -277,7 +718,6 @@ namespace TE
 
 
     void Mesh::Draw(
-        TE::Shader& shader,
         Camera& camera,
         glm::mat4 matrix,
         glm::vec3 translation,
@@ -285,28 +725,31 @@ namespace TE
         glm::vec3 scale
     )
     {
-        shader.Activate();
+        meshShader.Activate();
         VAO.Bind();
-
-        unsigned int numDiffuse = 0;
-
-        for (unsigned int i = 0; i < textures.size(); i++)
+        
+        for (unsigned int j = 0; j < materials.size(); j++)
         {
-            std::string num;
-            std::string type = textures[i].type;
+            unsigned int numDiffuse = 0;
 
-            num = std::to_string(numDiffuse++);
+            for (unsigned int i = 0; i < materials[j].textures.size(); i++)
+            {
+                std::string num;
+                std::string type = materials[j].textures[i].type;
 
-            textures[i].texUnit(
-                shader,
-                (type + num).c_str(),
-                i
-            );
+                num = std::to_string(numDiffuse++);
 
-            textures[i].Bind();
+                materials[j].textures[i].texUnit(
+                    meshShader,
+                    (type + num).c_str(),
+                    i
+                );
+
+                materials[j].textures[i].Bind();
+            }
         }
 
-        shader.SetVec3(
+        meshShader.SetVec3(
             "camPos",
             (glm::vec3){
             camera.Position.x,
@@ -314,7 +757,7 @@ namespace TE
             camera.Position.z}
         );
 
-        camera.Matrix(shader, "camMatrix");
+        camera.Matrix(meshShader, "camMatrix");
 
         if (instancing == 1)
         {
@@ -330,13 +773,13 @@ namespace TE
                 scale
             );
 
-            shader.SetMat4("translation", trans);
+            meshShader.SetMat4("translation", trans);
 
-            shader.SetMat4("rotation", rot);
+            meshShader.SetMat4("rotation", rot);
 
-            shader.SetMat4("scale", sca);
+            meshShader.SetMat4("scale", sca);
 
-            shader.SetMat4("model", matrix);
+            meshShader.SetMat4("model", matrix);
 
             glDrawElements(
                 GL_TRIANGLES,

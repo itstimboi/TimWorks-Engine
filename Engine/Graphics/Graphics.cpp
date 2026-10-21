@@ -6,7 +6,7 @@
 #include <vector>
 
 
-namespace TE
+namespace TWE
 {
 
     // ============================================================
@@ -34,7 +34,7 @@ namespace TE
         std::string title;
 
         GraphicsRenderer renderer;
-
+        
         bool legacyOpenGL = false;
     };
 
@@ -449,10 +449,7 @@ namespace TE
                 CreateGLFWWindow(
                     width,
                     height,
-                    title,
-                    major,
-                    minor,
-                    true
+                    title
                 );
 
 
@@ -684,25 +681,23 @@ namespace TE
     // Renderer Information
     // ============================================================
 
-    GraphicsRenderer GetGraphicsRenderer(
-        GraphicsWindow* window
-    )
+    GraphicsRenderer GetGraphicsRenderer()
     {
-        if (!window)
-            return GraphicsRenderer{};
+        // if (!currentWindow)
+        // {
+        //     return;
+        // }
 
-        return window->renderer;
+        return currentWindow->renderer;
     }
 
 
-    Renderer GetRenderer(
-        GraphicsWindow* window
-    )
+    Renderer GetRenderer()
     {
-        if (!window)
+        if (!currentWindow)
             return Renderer::None;
 
-        return window->renderer.API;
+        return currentWindow->renderer.API;
     }
 
     static bool ParseGLVersion(
@@ -799,25 +794,21 @@ namespace TE
         return GLRenderer::None;
     }
 
-    DXRenderer GetDXRenderer(
-        GraphicsWindow* window
-    )
+    DXRenderer GetDXRenderer()
     {
-        if (!window)
+        if (!currentWindow)
             return DXRenderer::None;
 
-        return window->renderer.DX;
+        return currentWindow->renderer.DX;
     }
 
 
-    VKRenderer GetVKRenderer(
-        GraphicsWindow* window
-    )
+    VKRenderer GetVKRenderer()
     {
-        if (!window)
+        if (!currentWindow)
             return VKRenderer::None;
 
-        return window->renderer.VK;
+        return currentWindow->renderer.VK;
     }
 
 
@@ -825,14 +816,12 @@ namespace TE
     // Legacy OpenGL
     // ============================================================
 
-    bool IsUsingLegacyOpenGL(
-        GraphicsWindow* window
-    )
+    bool IsUsingLegacyOpenGL()
     {
-        if (!window)
+        if (!currentWindow)
             return false;
 
-        return window->legacyOpenGL;
+        return currentWindow->legacyOpenGL;
     }
 
 

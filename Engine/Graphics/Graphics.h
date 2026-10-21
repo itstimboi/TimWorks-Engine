@@ -1,6 +1,6 @@
 #pragma once
 
-namespace TE
+namespace TWE
 {
 
     // ============================================================
@@ -181,23 +181,15 @@ namespace TE
     // Renderer Information
     // ============================================================
 
-    GraphicsRenderer GetGraphicsRenderer(
-        GraphicsWindow* window
-    );
+    GraphicsRenderer GetGraphicsRenderer();
 
-    Renderer GetRenderer(
-        GraphicsWindow* window
-    );
+    Renderer GetRenderer();
 
     GLRenderer GetGLRenderer();
 
-    DXRenderer GetDXRenderer(
-        GraphicsWindow* window
-    );
+    DXRenderer GetDXRenderer();
 
-    VKRenderer GetVKRenderer(
-        GraphicsWindow* window
-    );
+    VKRenderer GetVKRenderer();
 
 
     // ============================================================

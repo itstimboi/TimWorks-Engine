@@ -31,7 +31,9 @@
 #include <cstdint>
 #include <string>
 
-namespace TE
+#include <glm/glm.hpp>
+
+namespace TWE
 {
 	namespace Audio
 	{
@@ -47,5 +49,11 @@ namespace TE
 
 		void SetVolume(SoundHandle sound, float volume);
 		void SetPanning(SoundHandle sound, float panning);
+
+		void PlaySound3D(SoundHandle sound, glm::vec3 position, bool loop = false);
+		void StopSound3D(SoundHandle sound);
+
+		void SetVolume3D(SoundHandle sound, float volume);
+		void SetPanning3D(SoundHandle sound, float panning);
 	}
 }

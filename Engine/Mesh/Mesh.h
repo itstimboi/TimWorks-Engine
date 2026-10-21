@@ -42,6 +42,7 @@
 
 #include <vector>
 #include <string>
+#include <utility>
 
 #include "Rendering/VAO.h"
 #include "Rendering/EBO.h"
@@ -49,7 +50,7 @@
 #include "Camera/Camera.h"
 #include "Textures/Texture.h"
 
-namespace TE
+namespace TWE
 {
     class Mesh
     {
@@ -57,22 +58,21 @@ namespace TE
 
             std::vector<Vertex> vertices;
             std::vector<unsigned int> indices;
-            std::vector<Texture> textures;
+            std::vector<Material> materials;
 
             VAO VAO;
 
             unsigned int instancing;
 
             Mesh(
-                std::vector<Vertex>& vertices,
-                std::vector<unsigned int>& indices,
-                std::vector<Texture>& textures,
+                std::vector<Vertex> vertices,
+                std::vector<unsigned int> indices,
+                std::vector<Material> materials,
                 unsigned int instancing = 1,
                 std::vector<glm::mat4> instanceMatrix = {}
             );
 
             void Draw(
-                TE::Shader& shader,
                 Camera& camera,
                 glm::mat4 matrix = glm::mat4(1.0f),
                 glm::vec3 translation = glm::vec3(0.0f),

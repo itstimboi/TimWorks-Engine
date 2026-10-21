@@ -1,6 +1,6 @@
 #pragma once
 
-namespace TE
+namespace TWE
 {
     enum class WindowsVersion
     {

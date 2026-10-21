@@ -1,0 +1,20 @@
+schema_version = "1.0.0"
+
+id = "timworks_model_exporter"
+version = "0.2.0"
+
+name = "TimWorks Model Importer/Exporter"
+tagline = "Import/Export Blender models in/to the TimWorks model format"
+maintainer = "Tim Boi"
+
+type = "add-on"
+
+website = "https://github.com/itstimboi/TimWorks-Engine"
+
+tags = ["Import-Export"]
+
+blender_version_min = "5.0.0"
+
+license = [
+    "SPDX:GPL-3.0-or-later",
+]

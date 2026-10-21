@@ -1,5 +1,10 @@
 #include "EBO.h"
 
+#include <glad/glad46.h>
+
+namespace TWE
+{
+
 EBO::EBO(std::vector<unsigned int>& indices)
 {
     glGenBuffers(1, &ID);
@@ -36,4 +41,6 @@ void EBO::Delete()
         glDeleteBuffers(1, &ID);
         ID = 0;
     }
+}
+
 }
