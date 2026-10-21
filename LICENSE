@@ -1,339 +1,520 @@
-                    GNU GENERAL PUBLIC LICENSE
-                       Version 2, June 1991
+      TimWorks Engine Public License (TWEPL)
+          Engine Edition - Version 0.1
 
- Copyright (C) 1989, 1991 Free Software Foundation, Inc.,
- 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- Everyone is permitted to copy and distribute verbatim copies
- of this license document, but changing it is not allowed.
+           Copyright (c) 2026 Tim Boi
+      All rights reserved except as expressly 
+            permitted by this license.
 
-                            Preamble
+                    Preamble
 
-  The licenses for most software are designed to take away your
-freedom to share and change it.  By contrast, the GNU General Public
-License is intended to guarantee your freedom to share and change free
-software--to make sure the software is free for all its users.  This
-General Public License applies to most of the Free Software
-Foundation's software and to any other program whose authors commit to
-using it.  (Some other Free Software Foundation software is covered by
-the GNU Lesser General Public License instead.)  You can apply it to
-your programs, too.
+  The TimWorks Engine Public License (TWEPL) is intended
+to provide users with the freedom to use, study, modify,
+and redistribute TimWorks Engine.
 
-  When we speak of free software, we are referring to freedom, not
-price.  Our General Public Licenses are designed to make sure that you
-have the freedom to distribute copies of free software (and charge for
-this service if you wish), that you receive source code or can get it
-if you want it, that you can change the software or use pieces of it
-in new free programs; and that you know you can do these things.
+  This license permits both personal and commercial use of the
+Engine. Users may modify the Engine, maintain private forks, and 
+redistribute original or modified versions without being required 
+to publish or disclose their modified source code.
 
-  To protect your rights, we need to make restrictions that forbid
-anyone to deny you these rights or to ask you to surrender the rights.
-These restrictions translate to certain responsibilities for you if you
-distribute copies of the software, or if you modify it.
+  Redistributions must preserve the applicable copyright notices and
+a copy of this license, ensuring that the original terms governing
+the Engine remain identifiable.
 
-  For example, if you distribute copies of such a program, whether
-gratis or for a fee, you must give the recipients all the rights that
-you have.  You must make sure that they, too, receive or can get the
-source code.  And you must show them these terms so they know their
-rights.
+  TWEPL is designed to encourage experimentation, independent
+development, and the creation of derivative projects while allowing 
+developers to decide whether their own modifications remain private 
+or are shared with the community.
 
-  We protect your rights with two steps: (1) copyright the software, and
-(2) offer you this license which gives you legal permission to copy,
-distribute and/or modify the software.
+  This license applies only to materials covered by it. Third-party
+components remain subject to their respective licenses.
 
-  Also, for each author's protection and ours, we want to make certain
-that everyone understands that there is no warranty for this free
-software.  If the software is modified by someone else and passed on, we
-want its recipients to know that what they have is not the original, so
-that any problems introduced by others will not reflect on the original
-authors' reputations.
+                 1. Definitions
 
-  Finally, any free program is threatened constantly by software
-patents.  We wish to avoid the danger that redistributors of a free
-program will individually obtain patent licenses, in effect making the
-program proprietary.  To prevent this, we have made it clear that any
-patent must be licensed for everyone's free use or not licensed at all.
+      For the purposes of this license, the following
+       terms shall have the meanings set forth below.
 
-  The precise terms and conditions for copying, distribution and
-modification follow.
+  1.1 "TimWorks Engine"
 
-                    GNU GENERAL PUBLIC LICENSE
-   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+  "TimWorks Engine" or the "Original Engine" refers to the original
+software project known as TimWorks Engine, including its engine source
+code, libraries, build tools, documentation, and other materials
+distributed under this license by the applicable Copyright Holder.
 
-  0. This License applies to any program or other work which contains
-a notice placed by the copyright holder saying it may be distributed
-under the terms of this General Public License.  The "Program", below,
-refers to any such program or work, and a "work based on the Program"
-means either the Program or any derivative work under copyright law:
-that is to say, a work containing the Program or a portion of it,
-either verbatim or with modifications and/or translated into another
-language.  (Hereinafter, translation is included without limitation in
-the term "modification".)  Each licensee is addressed as "you".
+  1.2 "Software"
 
-Activities other than copying, distribution and modification are not
-covered by this License; they are outside its scope.  The act of
-running the Program is not restricted, and the output from the Program
-is covered only if its contents constitute a work based on the
-Program (independent of having been made by running the Program).
-Whether that is true depends on what the Program does.
+  "Software" refers to any portion of TimWorks Engine that is made
+available under this license, including source code, compiled binaries,
+libraries, tools, and accompanying documentation.
 
-  1. You may copy and distribute verbatim copies of the Program's
-source code as you receive it, in any medium, provided that you
-conspicuously and appropriately publish on each copy an appropriate
-copyright notice and disclaimer of warranty; keep intact all the
-notices that refer to this License and to the absence of any warranty;
-and give any other recipients of the Program a copy of this License
-along with the Program.
+  1.3 "Copyright Holder"
 
-You may charge a fee for the physical act of transferring a copy, and
-you may at your option offer warranty protection in exchange for a fee.
+  "Copyright Holder" refers to the person or legal entity that owns the
+copyright in the relevant portion of the Software.
 
-  2. You may modify your copy or copies of the Program or any portion
-of it, thus forming a work based on the Program, and copy and
-distribute such modifications or work under the terms of Section 1
-above, provided that you also meet all of these conditions:
+  1.4 "License"
 
-    a) You must cause the modified files to carry prominent notices
-    stating that you changed the files and the date of any change.
+  "License" refers to the TimWorks Engine Public License (TWEPL),
+including the applicable version identified in the accompanying license
+notice.
 
-    b) You must cause any work that you distribute or publish, that in
-    whole or in part contains or is derived from the Program or any
-    part thereof, to be licensed as a whole at no charge to all third
-    parties under the terms of this License.
+  1.5 "Licensee"
 
-    c) If the modified program normally reads commands interactively
-    when run, you must cause it, when started running for such
-    interactive use in the most ordinary way, to print or display an
-    announcement including an appropriate copyright notice and a
-    notice that there is no warranty (or else, saying that you provide
-    a warranty) and that users may redistribute the program under
-    these conditions, and telling the user how to view a copy of this
-    License.  (Exception: if the Program itself is interactive but
-    does not normally print such an announcement, your work based on
-    the Program is not required to print an announcement.)
+  "Licensee" refers to any individual, organization, or legal entity
+exercising rights granted under this license.
 
-These requirements apply to the modified work as a whole.  If
-identifiable sections of that work are not derived from the Program,
-and can be reasonably considered independent and separate works in
-themselves, then this License, and its terms, do not apply to those
-sections when you distribute them as separate works.  But when you
-distribute the same sections as part of a whole which is a work based
-on the Program, the distribution of the whole must be on the terms of
-this License, whose permissions for other licensees extend to the
-entire whole, and thus to each and every part regardless of who wrote it.
+  1.6 "Modification"
 
-Thus, it is not the intent of this section to claim rights or contest
-your rights to work written entirely by you; rather, the intent is to
-exercise the right to control the distribution of derivative or
-collective works based on the Program.
+  "Modification" refers to any alteration, adaptation, improvement,
+removal, replacement, or extension of the original Engine's source
+code or other covered components.
+  Examples include changes to rendering, audio, input handling,
+platform support, engine architecture, build systems, and other
+Engine functionality.
 
-In addition, mere aggregation of another work not based on the Program
-with the Program (or with a work based on the Program) on a volume of
-a storage or distribution medium does not bring the other work under
-the scope of this License.
+  1.7 "Modified Version"
 
-  3. You may copy and distribute the Program (or a work based on it,
-under Section 2) in object code or executable form under the terms of
-Sections 1 and 2 above provided that you also do one of the following:
+  "Modified Version" refers to a version of TimWorks Engine that
+contains one or more Modifications to the original Engine.
+  A Modified Version may be maintained privately, distributed
+publicly, distributed commercially, or incorporated into another
+software product, subject to the terms of this license.
 
-    a) Accompany it with the complete corresponding machine-readable
-    source code, which must be distributed under the terms of Sections
-    1 and 2 above on a medium customarily used for software interchange; or,
+  1.8 "Fork"
 
-    b) Accompany it with a written offer, valid for at least three
-    years, to give any third party, for a charge no more than your
-    cost of physically performing source distribution, a complete
-    machine-readable copy of the corresponding source code, to be
-    distributed under the terms of Sections 1 and 2 above on a medium
-    customarily used for software interchange; or,
+  "Fork" refers to an independent continuation, copy, or derivative
+development branch of TimWorks Engine maintained separately from
+the original project.
+  A Fork may use the TimWorks Engine name or a different name,
+subject to applicable trademark rights and the other terms of
+this license.
 
-    c) Accompany it with the information you received as to the offer
-    to distribute corresponding source code.  (This alternative is
-    allowed only for noncommercial distribution and only if you
-    received the program in object code or executable form with such
-    an offer, in accord with Subsection b above.)
+  1.9 "Redistribution"
 
-The source code for a work means the preferred form of the work for
-making modifications to it.  For an executable work, complete source
-code means all the source code for all modules it contains, plus any
-associated interface definition files, plus the scripts used to
-control compilation and installation of the executable.  However, as a
-special exception, the source code distributed need not include
-anything that is normally distributed (in either source or binary
-form) with the major components (compiler, kernel, and so on) of the
-operating system on which the executable runs, unless that component
-itself accompanies the executable.
+  "Redistribution" refers to providing, transmitting, publishing,
+selling, sublicensing where permitted, or otherwise making a copy
+of the Software or a Modified Version available to another person
+or entity.
+  Redistribution includes distribution through websites, software
+repositories, digital storefronts, physical media, downloadable
+packages, and other distribution channels.
 
-If distribution of executable or object code is made by offering
-access to copy from a designated place, then offering equivalent
-access to copy the source code from the same place counts as
-distribution of the source code, even though third parties are not
-compelled to copy the source along with the object code.
+  1.10 "Game or Application Using the Engine"
 
-  4. You may not copy, modify, sublicense, or distribute the Program
-except as expressly provided under this License.  Any attempt
-otherwise to copy, modify, sublicense or distribute the Program is
-void, and will automatically terminate your rights under this License.
-However, parties who have received copies, or rights, from you under
-this License will not have their licenses terminated so long as such
-parties remain in full compliance.
+  "Game or Application Using the Engine" refers to a game,
+application, or other software product that incorporates, links
+to, bundles, or is distributed with TimWorks Engine or a
+Modified Version of it.
+  This term includes products distributed in compiled form,
+whether or not the Engine's source code is included.
 
-  5. You are not required to accept this License, since you have not
-signed it.  However, nothing else grants you permission to modify or
-distribute the Program or its derivative works.  These actions are
-prohibited by law if you do not accept this License.  Therefore, by
-modifying or distributing the Program (or any work based on the
-Program), you indicate your acceptance of this License to do so, and
-all its terms and conditions for copying, distributing or modifying
-the Program or works based on it.
+  1.11 "Attribution Notice"
 
-  6. Each time you redistribute the Program (or any work based on the
-Program), the recipient automatically receives a license from the
-original licensor to copy, distribute or modify the Program subject to
-these terms and conditions.  You may not impose any further
-restrictions on the recipients' exercise of the rights granted herein.
-You are not responsible for enforcing compliance by third parties to
-this License.
+  "Attribution Notice" refers to a notice identifying 
+TimWorks Engine as the original Engine and, where applicable,
+identifying the Engine version, the name of the Fork, and the
+relationship between the two projects.
 
-  7. If, as a consequence of a court judgment or allegation of patent
-infringement or for any other reason (not limited to patent issues),
-conditions are imposed on you (whether by court order, agreement or
-otherwise) that contradict the conditions of this License, they do not
-excuse you from the conditions of this License.  If you cannot
-distribute so as to satisfy simultaneously your obligations under this
-License and any other pertinent obligations, then as a consequence you
-may not distribute the Program at all.  For example, if a patent
-license would not permit royalty-free redistribution of the Program by
-all those who receive copies directly or indirectly through you, then
-the only way you could satisfy both it and this License would be to
-refrain entirely from distribution of the Program.
+  1.12 "Modification Disclosure"
 
-If any portion of this section is held invalid or unenforceable under
-any particular circumstance, the balance of the section is intended to
-apply and the section as a whole is intended to apply in other
-circumstances.
+  "Modification Disclosure" refers to a reasonable written
+summary of material changes made to the original Engine, as
+required by this license.
+  A Modification Disclosure describes the nature of the changes
+but does not, by itself, require disclosure of source code, private
+repositories, or proprietary implementation details.
 
-It is not the purpose of this section to induce you to infringe any
-patents or other property right claims or to contest validity of any
-such claims; this section has the sole purpose of protecting the
-integrity of the free software distribution system, which is
-implemented by public license practices.  Many people have made
-generous contributions to the wide range of software distributed
-through that system in reliance on consistent application of that
-system; it is up to the author/donor to decide if he or she is willing
-to distribute software through any other system and a licensee cannot
-impose that choice.
+  1.13 "Source Code"
 
-This section is intended to make thoroughly clear what is believed to
-be a consequence of the rest of this License.
+  "Source Code" refers to the preferred form of a work for making
+modifications, including human-readable source files, build scripts,
+configuration files, and other materials needed to modify the
+relevant Software.
 
-  8. If the distribution and/or use of the Program is restricted in
-certain countries either by patents or by copyrighted interfaces, the
-original copyright holder who places the Program under this License
-may add an explicit geographical distribution limitation excluding
-those countries, so that distribution is permitted only in or among
-countries not thus excluded.  In such case, this License incorporates
-the limitation as if written in the body of this License.
+  1.14 "Object Code"
 
-  9. The Free Software Foundation may publish revised and/or new versions
-of the General Public License from time to time.  Such new versions will
-be similar in spirit to the present version, but may differ in detail to
-address new problems or concerns.
+  "Object Code" refers to a compiled or otherwise machine-readable
+form of the Software that is not presented in its preferred
+human-readable form for modification.
 
-Each version is given a distinguishing version number.  If the Program
-specifies a version number of this License which applies to it and "any
-later version", you have the option of following the terms and conditions
-either of that version or of any later version published by the Free
-Software Foundation.  If the Program does not specify a version number of
-this License, you may choose any version ever published by the Free Software
-Foundation.
+  1.15 "Third-Party Component"
 
-  10. If you wish to incorporate parts of the Program into other free
-programs whose distribution conditions are different, write to the author
-to ask for permission.  For software which is copyrighted by the Free
-Software Foundation, write to the Free Software Foundation; we sometimes
-make exceptions for this.  Our decision will be guided by the two goals
-of preserving the free status of all derivatives of our free software and
-of promoting the sharing and reuse of software generally.
+  "Third-Party Component" refers to any software, library, asset,
+tool, or other material included with or used by TimWorks Engine that
+is owned by another party or distributed under separate license terms.
+  Third-Party Components remain subject to their applicable licenses.
 
-                            NO WARRANTY
+      2. Fork Attribution and Modification Disclosure
 
-  11. BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
-FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.  EXCEPT WHEN
-OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
-PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED
-OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE ENTIRE RISK AS
-TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.  SHOULD THE
-PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING,
-REPAIR OR CORRECTION.
+  2.1 Attribution Requirement
 
-  12. IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
-WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
-REDISTRIBUTE THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES,
-INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING
-OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED
-TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY
-YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER
-PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE
-POSSIBILITY OF SUCH DAMAGES.
+  Any person or entity that redistributes the Engine, a Modified Version
+of the Engine, or a Game or Application Using the Engine that
+incorporates a Modified Version must provide an Attribution Notice
+identifying TimWorks Engine as the original Engine.
+  The notice must identify the original Engine version on which the
+Modified Version is based, where reasonably ascertainable, and the name
+of the Fork or Modified Version, if one has been assigned.
 
-                     END OF TERMS AND CONDITIONS
+  2.2 Modification Disclosure
 
-            How to Apply These Terms to Your New Programs
+  Any person or entity that redistributes a Modified Version of the 
+Engine, or a Game or Application Using the Engine that incorporates a
+Modified Version, must provide a reasonable written summary of the
+material modifications made to the Engine.
+  The disclosure must describe significant changes to the Engine,
+including applicable changes to rendering, audio, input handling,
+platform support, engine architecture, build systems, or other
+major functionality.
+  To the extent reasonably known, the disclosure should also
+identify material modifications inherited from an existing Fork.
+  This requirement does not require disclosure of source code,
+private repositories, proprietary implementation details, or
+modifications unrelated to the Engine. A redistributor is not
+required to disclose information that they do not reasonably
+know and cannot reasonably determine.
 
-  If you develop a new program, and you want it to be of the greatest
-possible use to the public, the best way to achieve this is to make it
-free software which everyone can redistribute and change under these terms.
+  2.3 Placement of Notices
 
-  To do so, attach the following notices to the program.  It is safest
-to attach them to the start of each source file to most effectively
-convey the exclusion of warranty; and each file should have at least
-the "copyright" line and a pointer to where the full notice is found.
+  The Attribution Notice and Modification Disclosure must accompany
+each distributed release in a reasonably accessible location
+appropriate to the distribution method.
 
-    <one line to give the program's name and a brief idea of what it does.>
-    Copyright (C) <year>  <name of author>
+    Acceptable locations include:
+  - A README, NOTICE, or credits file supplied with the release.
+  - An About, Credits, or Legal Notices screen within a distributed
+      game or application.
+  - The product or download page through which the release is distributed.
+  - Documentation or other materials supplied with a physical or
+      digital release.
 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
+  The notice must be reasonably accessible to recipients of the
+distributed product. Merely keeping the notice in a private repository
+or internal development document does not satisfy this requirement.
+  For products distributed through multiple channels, the notice must
+be made available through each channel, either directly or through
+materials accompanying the distribution.
+Where a game incorporates a Modified Version of the Engine, the
+notice may appear in the game's credits or other appropriate in-game
+or accompanying materials.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+  2.4 Example Attribution
 
-    You should have received a copy of the GNU General Public License along
-    with this program; if not, write to the Free Software Foundation, Inc.,
-    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+  A compliant notice may use the following format:
+"This product uses a fork of TimWorks Engine 0.1 called GoldWorks.
+GoldWorks is an independently developed modification of TimWorks Engine.
+  Engine modifications: Replaced the rendering backend, modified input
+handling, and added support for additional platforms.
+  TimWorks Engine and its original Copyright Holder do not necessarily
+endorse, maintain, or support GoldWorks."
+  Redistributors must replace the example details with accurate
+information about their own product and the modifications made
+to the Engine.
 
-Also add information on how to contact you by electronic and paper mail.
+  2.5 No Source Publication Requirement
 
-If the program is interactive, make it output a short notice like this
-when it starts in an interactive mode:
+  Compliance with this section requires attribution and a reasonable
+description of material Engine modifications only. Nothing in this
+section requires the publication or disclosure of modified source
+code, private development materials, proprietary implementation
+details, or internal repositories.
 
-    Gnomovision version 69, Copyright (C) year name of author
-    Gnomovision comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
-    This is free software, and you are welcome to redistribute it
-    under certain conditions; type `show c' for details.
+  2.6 No Implied Endorsement
 
-The hypothetical commands `show w' and `show c' should show the appropriate
-parts of the General Public License.  Of course, the commands you use may
-be called something other than `show w' and `show c'; they could even be
-mouse-clicks or menu items--whatever suits your program.
+  Attribution under this section does not imply that TimWorks Engine
+or its original Copyright Holder endorses, maintains, or supports any
+Fork, game, application, or derivative project.
 
-You should also get your employer (if you work as a programmer) or your
-school, if any, to sign a "copyright disclaimer" for the program, if
-necessary.  Here is a sample; alter the names:
+                    3. Grant of Rights
 
-  Yoyodyne, Inc., hereby disclaims all copyright interest in the program
-  `Gnomovision' (which makes passes at compilers) written by James Hacker.
+  3.1 Permission to Use
 
-  <signature of Ty Coon>, 1 April 1989
-  Ty Coon, President of Vice
+  Subject to the terms of this license, the Copyright Holder grants
+the Licensee a worldwide, non-exclusive, royalty-free license to use,
+reproduce, compile, execute, study, and modify the Software. These
+permissions include personal, educational, research, and commercial use.
 
-This General Public License does not permit incorporating your program into
-proprietary programs.  If your program is a subroutine library, you may
-consider it more useful to permit linking proprietary applications with the
-library.  If this is what you want to do, use the GNU Lesser General
-Public License instead of this License.
+  3.2 Permission to Create Derivative Works
+
+  The Licensee may create, maintain, and develop Modified Versions
+and Forks of the Engine. Modified Versions may include proprietary
+features, private improvements, alternative implementations, and other
+changes, provided that the applicable terms of this license are followed
+when the Software is redistributed.
+
+  3.3 Permission to Distribute
+
+  Subject to the requirements of this license, the Licensee may
+distribute original or modified copies of the Software in source
+code or compiled form.
+  Distribution may be free of charge or for a fee.
+
+  3.4 Use in Other Software
+
+  The Licensee may incorporate, link to, bundle, or distribute the
+Software or a Modified Version as part of a game, application, or
+other software product, including commercial products. Such use
+does not, by itself, require the Licensee to publish the source
+code of the game, application, or other software product.
+  Where Section 2 applies, the Licensee must provide the required
+Attribution Notice and Modification Disclosure.
+
+  3.5 Scope of Permission
+
+  The permissions granted by this license apply only to rights that
+the Copyright Holder is legally entitled to license. This license does
+not grant rights to third-party trademarks, patents, assets, or other
+intellectual property except where such rights are expressly included
+in the license or otherwise permitted by law.
+
+                  4. Modification and Private Use
+
+  4.1 Modifications
+
+  The Licensee may alter, adapt, extend, improve, or otherwise modify
+the Software for any lawful purpose.
+  Modifications may include changes to the Engine's rendering system,
+audio system, input handling, platform support, architecture, tools,
+build process, or other functionality.
+
+  4.2 Private Forks
+
+  The Licensee may maintain private or confidential Forks and
+Modified Versions of the Engine.
+  The Licensee is not required to publish, disclose, or
+distribute private modifications, whether for personal use,
+internal organizational use, or commercial development.
+
+  4.3 Proprietary Modifications
+
+  The Licensee may develop and retain proprietary modifications
+to the Software. The Licensee is not required by this license to
+make those modifications available under TWEPL or any other 
+open-source license.
+
+  4.4 No Obligation to Contribute
+
+  The Licensee is not required to submit modifications, bug fixes,
+improvements, or other contributions to the original TimWorks Engine
+project or its Copyright Holder.
+
+  4.5 Obligations Upon Distribution
+
+  The permissions in this section do not exempt the Licensee from the
+attribution, modification-disclosure, copyright-notice, or other
+requirements that apply when distributing the Software or a 
+Modified Version under this license.
+
+                    5. Redistribution
+
+  5.1 Permitted Redistribution
+
+  The Licensee may redistribute the original Software and 
+Modified Versions in source code, Object Code, or other forms
+covered by this license.
+  Redistribution may take place through websites, software
+repositories, digital storefronts, downloadable packages,
+physical media, or other distribution channels.
+
+  5.2 Redistribution Without Source Code
+
+  The Licensee may distribute compiled or other non-source-code
+versions of the Software and Modified Versions without publishing
+or providing the corresponding source code.
+  The Licensee is not required to make proprietary modifications
+publicly available or provide recipients with access to private
+development repositories.
+
+  5.3 Commercial Distribution
+
+  The Licensee may sell, commercially distribute, or otherwise
+monetize the Software, Modified Versions, and products incorporating
+them, subject to this license and any applicable third-party license
+terms.
+
+  5.4 Conditions of Redistribution
+
+  When redistributing the Software or a Modified Version, the Licensee must:
+1. Retain applicable copyright notices and existing license notices.
+2. Include a copy of this license with the distributed Software or
+  Modified Version.
+3. Comply with Section 2 when an Attribution Notice or Modification Disclosure
+  is required.
+4. Respect applicable third-party license requirements.
+
+  5.5 No Mandatory Public Release
+
+  Nothing in this license requires the Licensee to publish a Fork, disclose
+proprietary modifications, make a public repository, or contribute changes to
+the original project.
+  This provision does not remove the attribution and modification-disclosure
+obligations expressly imposed by Section 2.
+
+  5.6 Independent Licensing of Modifications
+
+  The Licensee may distribute their original modifications under separate
+licensing terms, including proprietary terms, provided that the Licensee has
+the necessary rights to do so and continues to comply with the obligations
+applicable to the original Software.
+  Nothing in this section permits the Licensee to remove or override the
+license terms applicable to material obtained from third parties.
+
+                 6. Copyright and License Notices
+
+  6.1 Preservation of Notices
+
+  The Licensee must retain applicable copyright notices, this license,
+and existing license notices and disclaimers when redistributing copies
+of the original Software or Modified Versions containing material from
+the original Software.
+
+  6.2 Source Distributions
+
+  When redistributing source code, the Licensee must preserve applicable
+notices in the relevant source files or accompanying materials.
+  The Licensee may add copyright notices identifying their own original
+contributions, provided those notices do not falsely claim ownership of
+material created by others.
+
+  6.3 Compiled Distributions
+  
+  When redistributing the Software in compiled or other non-source-code
+form, the Licensee must include a copy of this license and preserve
+applicable copyright and license notices in accompanying documentation
+or other materials reasonably accessible to recipients.
+
+  6.4 No False Claims of Authorship
+
+  The Licensee must not falsely claim to have authored material 
+created by the original Copyright Holder or another contributor.
+  This section does not prevent the Licensee from accurately
+identifying their own contributions or describing their Fork as
+an independently developed project.
+
+              7. Project Names and Attribution
+
+  7.1 Fork Names
+
+  This license does not require a Fork or Modified Version
+to use a different name from TimWorks Engine.
+  The Licensee may identify a Fork using the name "TimWorks Engine"
+or a different name, subject to applicable trademark rights and laws.
+
+  7.2 Identification of the Original Engine
+
+  When required by Section 2, the Licensee must identify TimWorks Engine
+as the original Engine and provide the relevant version and Fork
+information to the extent required by that section.
+
+  7.3 Trademarks and Branding
+
+  This license does not grant unrestricted rights to use the 
+Copyright Holder's trademarks, logos, or branding.
+  Any use of such marks remains subject to independently applicable rights
+and laws. Nothing in this section prohibits factual references to 
+TimWorks Engine required by this license.
+
+  7.4 No Implied Affiliation
+
+  The Licensee must not falsely represent that a Fork or Modified Version
+is officially maintained, endorsed, or supported by the original
+Copyright Holder.
+
+                      8. Third-Party Components
+
+  8.1 Separate License Terms
+
+  The Software may include, bundle, or depend on Third-Party
+Components distributed under separate licenses.
+  Those components remain subject to their applicable license terms.
+This license does not replace, override, or expand the rights granted
+by those licenses.
+
+  8.2 Compliance
+
+  The Licensee is responsible for identifying and complying with
+applicable third-party license requirements when redistributing
+those components.
+
+  8.3 Scope of This License
+
+  TWEPL applies only to material that the relevant Copyright Holder
+has authority to distribute under this license.
+  The presence of a Third-Party Component in TimWorks Engine does not
+automatically place that component under TWEPL.
+
+                          9. Termination
+
+  9.1 Termination for Violation
+
+  To the extent permitted by applicable law, the permissions granted
+under this license terminate if the Licensee materially violates its terms.
+
+  9.2 Reinstatement
+
+  Where permitted by applicable law, permissions may be reinstated if
+the violation is cured within a reasonable period after the Licensee
+becomes aware of it.
+  Nothing in this section prevents the Copyright Holder from exercising
+rights or remedies available under applicable law.
+
+  9.3 Effect of Termination
+
+  Upon termination, the Licensee must cease exercising permissions that
+have terminated, except to the extent continued exercise is permitted by
+applicable law or the permissions have been reinstated.
+  Termination does not eliminate rights or obligations that applicable law
+provides cannot be terminated.
+
+                      10. Disclaimer of Warranty
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT, TO THE MAXIMUM EXTENT
+PERMITTED BY APPLICABLE LAW.
+  THE COPYRIGHT HOLDER DOES NOT WARRANT THAT THE SOFTWARE WILL BE ERROR-FREE,
+SECURE, AVAILABLE, OR SUITABLE FOR ANY PARTICULAR PURPOSE.
+  THE LICENSEE ASSUMES RESPONSIBILITY FOR DETERMINING THE SUITABILITY OF
+THE SOFTWARE FOR THEIR INTENDED USE.
+
+                        11. Limitation of Liability
+
+  TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE COPYRIGHT HOLDER
+SHALL NOT BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM THE
+SOFTWARE OR ITS USE, DISTRIBUTION, OR MODIFICATION, INCLUDING DIRECT, INDIRECT,
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES, WHETHER IN CONTRACT,
+TORT, OR OTHERWISE.
+  NOTHING IN THIS LICENSE EXCLUDES OR LIMITS LIABILITY TO THE EXTENT THAT
+SUCH EXCLUSION OR LIMITATION IS PROHIBITED BY APPLICABLE LAW.
+
+                    12. Governing Law and Interpretation
+
+  12.1 Applicable Law
+
+  This license shall be interpreted in accordance with applicable law.
+  The Copyright Holder may specify a governing law and jurisdiction in a
+future revision of this license after appropriate legal review.
+
+  12.2 Severability
+
+  If any provision of this license is found to be invalid or unenforceable,
+the remaining provisions shall continue in effect to the extent permitted by
+applicable law.
+
+  12.3 No Waiver
+
+  Failure to enforce a provision of this license on one occasion does not
+necessarily waive the right to enforce that provision on another occasion.
+
+  12.4 Entire License
+
+  This license sets out the terms governing the permissions granted by the
+Copyright Holder for the covered Software.
+  Any separate written agreement between the Copyright Holder and a Licensee
+may apply to that Licensee where legally valid.
+
+  13. Acceptance
+
+  By exercising the permissions granted under this license, the Licensee
+agrees to comply with the applicable terms of TWEPL.
+  If the Licensee does not agree to these terms, the Licensee may not
+exercise the permissions granted by this license.
