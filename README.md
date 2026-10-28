@@ -33,17 +33,17 @@ These folders are part of the broader development process, but not all of them a
 
 TimWorks Engine is still in progress, but has a basis that still works for an engine. Features, APIs, rendering backends, and platform support may change as development continues.
 
-  ## Supported Features
+  ### Supported Features
 
   1. Win32 Window Creation
   2. OpenGL 4.6
 
-  ## In-Progress Features
+  ### In-Progress Features
   
   1. OpenGL 1.0 (Still in progress)
   2. TimWorks API inclusion
 
-  ## Planned Features
+  ### Planned Features
   
   1. Other Window Backends
   2. Software Rendering
